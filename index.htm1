@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>بامو يلا 👑</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #090909, #1d1605, #090909);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      padding: 35px 20px;
+      border: 2px solid #d4af37;
+      border-radius: 25px;
+      background: rgba(0, 0, 0, 0.65);
+      box-shadow: 0 0 40px rgba(212, 175, 55, 0.35);
+    }
+
+    .crown {
+      font-size: 80px;
+      animation: crown 2s infinite;
+    }
+
+    @keyframes crown {
+      0%, 100% {
+        transform: translateY(0) rotate(-3deg);
+      }
+
+      50% {
+        transform: translateY(-15px) rotate(3deg);
+      }
+    }
+
+    h1 {
+      color: #d4af37;
+      font-size: 38px;
+      margin: 15px 0;
+    }
+
+    .subtitle {
+      color: #ddd;
+      margin-bottom: 25px;
+      font-size: 18px;
+    }
+
+    input {
+      width: 100%;
+      padding: 16px;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      background: #111;
+      color: white;
+      outline: none;
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #b8860b, #ffd700, #b8860b);
+      color: #111;
+      font-size: 19px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+    }
+
+    #result {
+      display: none;
+      margin-top: 25px;
+      animation: appear 1s;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    #welcome {
+      color: #ffd700;
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
+    #title {
+      font-size: 22px;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .kingButton {
+      background: #151515;
+      color: #ffd700;
+      border: 2px solid #d4af37;
+      margin-top: 10px;
+    }
+
+    #message {
+      margin-top: 20px;
+      color: #ddd;
+      min-height: 30px;
+      font-size: 18px;
+    }
+
+    .spark {
+      position: fixed;
+      font-size: 25px;
+      animation: fall 2s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="crown">👑</div>
+
+    <h1>عالم الملوك</h1>
+
+    <p class="subtitle">
+       تعالا يبن الفاجره 👑
+    </p>
+
+    <input
+      id="name"
+      type="text"
+      placeholder="اكتب اسمك يا ياكسمك..."
+    >
+
+    <button onclick="enterKingdom()">
+      👑 ادخل في كسمك 
+    </button>
+
+    <div id="result">
+
+      <h2 id="welcome"></h2>
+
+      <p id="title"></p>
+
+      <button class="kingButton" onclick="kingMove()">
+        🔥  وريني طيزك يبن الاحبه 
+      </button>
+
+      <p id="message"></p>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const moves = [
+      "👑 لو زبي دخل المكان... الكل يفسح طيزو!",
+      "🔥 الهيبة وصلت قبل الملك!",
+      "😎 حضور ملكي لا يحتاج تعريف!",
+      "🏆 تم تسجيل دخول أسطورة جديدة!",
+      "⚡ مستوى الفخامة ارتفع!",
+      "👑 التاج يليق بصاحبه!"
+    ];
+
+    function enterKingdom() {
+
+      const name = document
+        .getElementById("name")
+        .value
+        .trim();
+
+      if (name === "") {
+        alert("اكتب اسمك الأول يا يازنجي 👑");
+        return;
+      }
+
+      document.getElementById("result").style.display = "block";
+
+      document.getElementById("welcome").textContent =
+        "أهلاً يا يبن الفاجره " + name + " 👑";
+
+      document.getElementById("title").textContent =
+        "منور مملكة الملوك... يا " + name + " 🔥";
+
+      kingMove();
+      celebration();
+    }
+
+    function kingMove() {
+
+      const random =
+        Math.floor(Math.random() * moves.length);
+
+      document.getElementById("message").textContent =
+        moves[random];
+
+      celebration();
+    }
+
+    function celebration() {
+
+      for (let i = 0; i < 15; i++) {
+
+        const spark = document.createElement("div");
+
+        spark.className = "spark";
+        spark.textContent = Math.random() > 0.5 ? "👑" : "✨";
+
+        spark.style.left =
+          Math.random() * 100 + "vw";
+
+        spark.style.top = "-30px";
+
+        spark.style.animationDuration =
+          (1 + Math.random() * 2) + "s";
+
+        document.body.appendChild(spark);
+
+        setTimeout(() => {
+          spark.remove();
+        }, 3000);
+      }
+    }
+
+  </script>
+
+</body>
+</html>
